@@ -46,7 +46,7 @@
     <h1>Thông Tin Cá Nhân</h1>
 </header>
     <!-- Ảnh -->
-    <img src="vanh.jpg" width="250" alt="Ảnh cá nhân">
+    <img src="vanh.jpg?ex=69e976d9&is=69e82559&hm=f846cba5c7bc8cc6a91331f0cbcfef25a3333435cd2c1eae722c13700ca688b3&" width="250" alt="Ảnh cá nhân">
 
     <!-- Thông tin -->
     <p><b>Họ tên:</b> Đoàn Việt Anh</p>
