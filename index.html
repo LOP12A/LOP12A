@@ -1,112 +1,1382 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Lớp 12A</title>
+<title>Lớp 12A - K65 THPT HƯNG YÊN</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <style>
-body{
-    font-family: Arial;
-    background-color: #fff5fa;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f4f7f6;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 
+                0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.class-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 26px;
+    font-weight: bold;
+    color: #00b6ce;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    margin-right: auto;
+}
+
+.search-box {
+    margin: 0 auto;
+    position: relative;
+    left: -20px;
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.logo img { height: 50px; cursor: pointer; }
+
+.combo { position: relative; width: 240px; }
+.combo input { 
+    width: 100%; 
+    padding: 10px 18px; 
+    border-radius: 25px; 
+    border: 1px solid #ddd; 
+    outline: none;
+    transition: 0.3s;
+}
+.combo input:focus { border-color: #00b6ce; box-shadow: 0 0 8px rgba(0,182,206,0.2); }
+
+.dropdown {
+    position: absolute; 
+    top: 55px; 
+    width: 100%; 
+    max-height: 250px; 
+    overflow-y: auto;
+    background: white; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.item { padding: 12px 15px; cursor: pointer; transition: 0.2s; border-bottom: 1px solid #f9f9f9; }
+.item:last-child { border-bottom: none; }
+.item:hover { background: #f0f7ff; color: #00b6ce; }
+
+.contact {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-left: auto;
+}
+
+.contact a {
+    text-decoration: none;
+    color: #444;
+    font-family: 'Dancing Script', cursive; 
+    font-size: 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact a i { font-size: 26px; }
+.contact a:hover { transform: translateY(-5px) scale(1.1); }
+.contact a[href*="facebook"]:hover { color: #1877F2 !important; }
+.contact a[href*="instagram"]:hover { color: #E4405F !important; }
+.contact a[href*="tiktok"]:hover { color: #010101 !important; }
+
+.hero {
+    height: 55vh; 
+    min-height: 480px;
+    margin-top: 50px; 
+    background: url("background.png") center 90% / cover no-repeat; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.carousel {
+    position: relative;
+    width: 100vw;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.cards-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    position: absolute;
+    width: 180px;
+    height: 262px;
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease, filter 0.6s ease;
+}
+
+.card-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+.card-link img { width: 100%; height: 82%; object-fit: cover; transition: 0.3s; }
+.card-link p { text-align: center; font-weight: bold; padding: 5px; color: #222; font-size: 15px; }
+.center:hover .card-link img { filter: brightness(0.9); }
+.left1 { transform: translateX(-230px) scale(1); opacity: 0.8; z-index: 5; }
+.right1 { transform: translateX(230px) scale(1); opacity: 0.8; z-index: 5; }
+.left2 { transform: translateX(-420px) scale(0.8); opacity: 0.5; z-index: 2; filter: blur(2px); }
+.right2 { transform: translateX(420px) scale(0.8); opacity: 0.5; z-index: 2; filter: blur(2px); }
+.center { transform: scale(1.2); z-index: 10; opacity: 1; filter: none; pointer-events: auto; cursor: pointer; }
+.hidden { transform: scale(0); opacity: 0; z-index: 0; }
+
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.prev { left: 30px; }
+.next { right: 30px; }
+.btn:hover { 
+    background: rgba(255, 255, 255, 0.6); 
+    transform: translateY(-50%) scale(1.1); 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2); }
+.btn:active { transform: translateY(-50%) scale(0.9); }
+
+.memory-section {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.container{
-    width: 800px;
-    margin: 40px auto;
-    background: white;
-    padding: 25px;
+.memory-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    color: #00b6ce;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+}
+
+.memory-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.memory-item {
     border-radius: 15px;
+    overflow: hidden;
+    height: 220px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: #e9ecef;
 }
 
-img{
-    width: 400px;
-    border-radius: 10px;
+.memory-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    cursor: pointer;
 }
 
-h1{
-    color: #ff4d94;
+.memory-item:hover img {
+    transform: scale(1.08);
 }
 
-a{
-    text-decoration: none;
-    color: #ff4d94;
+.memory-intro-container {
+    padding: 80px 40px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.memory-intro-content {
+    max-width: 1200px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.video-box {
+    flex: 1;
+    aspect-ratio: 16 / 9; 
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-box {
+    flex: 1;
+    min-width: 300px;
+}
+
+.title-wrapper {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.memory-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 45px !important;
+    line-height: 1.2;
+    color: #222;
+    text-align: left !important;
+}
+
+.underline {
+    width: 450px;
+    height: 4px;
+    background: #e4fafd;
+    margin-top: 1px;
+    border-radius: 2px;
+}
+
+.intro-text {
+    font-size: 17px !important;
+    color: #555 !important;
+    line-height: 1.8 !important;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.drop-cap {
+    font-size: 50px;
+    float: left;
+    line-height: 40px;
+    padding-right: 10px;
+    color: #00b6ce;
     font-weight: bold;
+    font-family: 'Dancing Script', cursive;
 }
 
-a:hover{
-    color: red;
+.signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #00b6ce;
+    margin-top: 30px;
+    text-align: right;
+}
+
+@media (max-width: 900px) {
+    .memory-intro-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .video-wrapper { width: 90%; }
+    .memory-title { text-align: center !important; }
+    .underline { margin: 10px auto; }
+}
+
+.teacher-section {
+    padding: 120px 40px;
+    background: #f1f8f8;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.teacher-container {
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap-reverse;
+    z-index: 2;
+}
+
+.teacher-image {
+    flex: 1;
+    min-width: 340px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.teacher-image::before {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    background: linear-gradient(135deg, rgba(0, 182, 206, 0.15), rgba(162, 143, 199, 0.15), rgba(255, 239, 161, 0.2));
+    border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+    z-index: 1;
+    animation: blobMorph 8s linear infinite alternate;
+}
+
+.teacher-image img {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 3 / 4; 
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 182, 206, 0.15);
+    position: relative;
+    z-index: 2;
+    transition: 0.5s ease;
+    border: 8px solid white;
+}
+
+.teacher-image:hover img {
+    transform: scale(1.02) translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 182, 206, 0.25);
+}
+
+@keyframes blobMorph {
+    0% { border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%; }
+    50% { border-radius: 55% 45% 65% 35% / 40% 55% 45% 60%; }
+    100% { border-radius: 45% 55% 35% 65% / 55% 45% 55% 45%; }
+}
+
+.teacher-info {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.teacher-role {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #00b6ce;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.teacher-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 56px;
+    color: #222;
+    margin-bottom: 30px;
+}
+
+.teacher-message {
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #444;
+    position: relative;
+    padding-left: 45px;
+}
+
+.teacher-message::before {
+    content: "“";
+    position: absolute;
+    left: 0;
+    top: -50px;
+    font-size: 80px;
+    color: #00b6ce;
+    opacity: 0.2;
+    font-family: serif;
+}
+
+.event-section {
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url('background-memory.png') center 100% / cover no-repeat fixed;
+    background-size: cover;
+}
+
+.event-section::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+    backdrop-filter: blur(2px); /* Độ mờ của nền */
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.event-2011::before { background-color: rgba(208, 231, 247, 0.4); }
+.event-gender::before { background-color: rgba(255, 240, 245, 0.4); }
+.event-263::before { background-color: rgba(208, 231, 247, 0.4); }
+
+.event-name, .event-slider-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.event-name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 42px;
+    margin-bottom: 50px;
+    color: #222;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+}
+
+.event-slider-wrapper {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.event-slider-container {
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 10px 0;
+}
+
+.event-slider-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.event-slider-track .memory-item {
+    flex: 0 0 calc(25% - 15px);
+    height: 250px;
+}
+
+.event-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #333;
+    font-size: 22px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.event-slider-btn:hover {
+    background: rgba(255, 255, 255, 0.6); 
+    transform: translateY(-50%) scale(1.1); 
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.event-slider-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.event-slider-btn.prev { left: 0; }
+.event-slider-btn.next { right: 0; }
+
+.memory-gallery { display: none; } 
+
+@media (max-width: 1024px) {
+    .event-slider-track .memory-item { flex: 0 0 calc(33.333% - 14px); }
+}
+@media (max-width: 768px) {
+    .event-slider-track .memory-item { flex: 0 0 calc(50% - 10px); }
+    .event-slider-wrapper { padding: 0 45px; }
+    .event-slider-btn { width: 40px; height: 40px; font-size: 18px; }
+}
+@media (max-width: 480px) {
+    .event-slider-track .memory-item { flex: 0 0 100%; }
+}
+
+.memory-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.memory-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-modal {
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.media-modal.active { display: flex; opacity: 1; }
+
+.modal-content {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 15px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    cursor: zoom-in;
+    user-select: none;
+    animation: bungRa 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform-origin: center center; 
+}
+
+@keyframes bungRa {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { opacity: 1; } 
+}
+
+video.modal-content {
+    background: #000;
+    outline: none;
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px; right: 30px;
+    color: white; font-size: 28px;
+    width: 50px; height: 50px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 10; transition: 0.3s;
+}
+.close-modal:hover { background: #ff4757; transform: rotate(90deg); }
+
+.zoom-pill {
+    position: absolute;
+    bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    display: flex; align-items: center; gap: 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 10;
+}
+.zoom-pill button {
+    background: none; border: none; color: white;
+    font-size: 20px; cursor: pointer; transition: 0.2s;
+}
+.zoom-pill button:hover { color: #00b6ce; transform: scale(1.2); }
+.pill-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.3); }
+
+.modal-content-wrapper {
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+}
+body.no-scroll { overflow: hidden; }
+
+.section-divider {
+    height: 10px;
+    background: #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 10;
+    margin-top: 50px;
+}
+
+.meme-section {
+    padding: 80px 40px;
+    background: url('bg-meme.jpg') center/cover no-repeat; 
+    background-color: #273c42;
+    position: relative;
+    overflow: hidden;
+}
+
+.meme-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0, 182, 206, 0.4));
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.meme-main-title {
+    position: relative; 
+    z-index: 2;
+    text-align: center; 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 50px;
+    color: #fff; 
+    margin-bottom: 60px; 
+    text-shadow: 2px 2px 10px rgba(0, 182, 206, 0.8);
+}
+
+.meme-container {
+    position: relative; 
+    z-index: 2;
+    display: flex; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    gap: 60px;
+    align-items: center;
+}
+
+.meme-left { 
+    flex: 1.2; 
+    position: relative; 
+    min-height: 550px; 
+}
+
+.meme-stack { 
+    position: relative; 
+    width: 100%; 
+    height: 450px; 
+}
+
+.meme-card {
+    position: absolute; 
+    top: 0; 
+    left: 10%; 
+    width: 80%; 
+    height: 400px;
+    background: #fff; 
+    padding: 15px 15px 50px 15px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5); 
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: zoom-in;
+}
+
+.meme-card img, .meme-card video { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 5px; 
+    pointer-events: none;
+}
+
+.meme-card.active { 
+    transform: rotate(0deg) translateY(0) scale(1.05); 
+    z-index: 3; 
+    opacity: 1; 
+}
+.meme-card.next-1 { 
+    transform: rotate(6deg) translateY(45px) translateX(25px) scale(0.95); 
+    z-index: 2; 
+    opacity: 0.8; 
+    cursor: pointer;
+}
+.meme-card.next-2 { 
+    transform: rotate(-4deg) translateY(90px) translateX(-20px) scale(0.85); 
+    z-index: 1; 
+    opacity: 0.5; 
+    cursor: pointer;
+}
+.meme-card.hidden { 
+    transform: translateY(150px) scale(0.7); 
+    opacity: 0; 
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+.meme-controls { 
+    display: flex; 
+    justify-content: center; 
+    gap: 25px; 
+    margin-top: 20px; 
+}
+
+.meme-btn { 
+    width: 55px; 
+    height: 55px; 
+    border-radius: 50%; 
+    border: 2px solid rgba(255,255,255,0.3); 
+    background: #3c5558;
+    backdrop-filter: blur(10px);
+    color: white; 
+    font-size: 22px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
+}
+.meme-btn:hover { 
+    background: rgba(88, 83, 83, 0.5);  
+    transform: translateY(-5px) scale(1.1); 
+}
+
+.meme-right { 
+    flex: 1; 
+    background: rgba(255,255,255,0.1); 
+    padding: 40px; 
+    border-radius: 20px; 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    color: white;
+}
+
+.meme-info-title { 
+    font-size: 38px; 
+    color: #fff; 
+    margin-bottom: 25px; 
+    font-family: 'Dancing Script', cursive; 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    border-bottom: 2px dashed rgba(255,255,255,0.3);
+    padding-bottom: 15px;
+}
+
+.meme-info-desc { 
+    font-size: 17px; 
+    line-height: 1.8; 
+    color: #f0f0f0; 
+    text-align: justify;
+}
+
+@media (max-width: 900px) {
+    .meme-container { flex-direction: column; gap: 40px; }
+    .meme-left, .meme-right { width: 100%; flex: none; }
+    .meme-card { height: 320px; left: 0; width: 100%; }
+    .meme-stack { height: 380px; }
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="navbar">
+    <div class="logo">
+        <a href="https://edu.viettel.vn/?page=home&site=45984" target="_blank">
+            <img src="logo.png" alt="Logo">
+        </a>
+    </div>
 
-<h1>Lớp 12A 💗</h1>
+    <div class="class-name">
+        12A - K65 THPT HƯNG YÊN
+    </div>
 
-<img src="lop.jpg">
+    <div class="search-box">
+        <div class="combo">
+            <input type="text" id="searchInput" placeholder="Tìm thành viên..." autocomplete="off">
+            <div class="dropdown" id="dropdown"></div>
+        </div>
+    </div>
 
-<h3>Giới thiệu lớp</h3>
-<p>Lớp 12A là một tập thể đoàn kết, luôn cùng nhau cố gắng trong học tập và tạo nên nhiều kỷ niệm đẹp trong suốt những năm cấp 3.</p>
-
-<h3>Danh sách học sinh</h3>
-    <p> <a href="trangcanhan.html">Bùi Bảo Anh</a></p>
-    <p> <a href="vanh.html">Đoàn Việt Anh</a></p>
-    <p><a href="trangcanhan.html">Nguyễn Quỳnh Anh</a></p>
-    <p> <a href="trangcanhan.html">Phạm Tùng Anh</a></p>
-    <p><a href="https://footballiseverything2210-cloud.github.io/trangcanhan/">Trần Quốc Anh</a></p>
-     <p><a href="trangcanhan.html">Phạm Ngọc Ánh</a></p>
-  <p><a href="trangcanhan.html">Dương Gia Bảo</a></p>
-
-    <p></p> <a href="trangcanhan.html">Vũ Quốc Bảo</a></p>
-    <p> <a href="trangcanhan.html">Nguyễn Hữu Bình</a></p>
-    <p><a href="trangcanhan.html">Trần Hà Chi</a></p>
-    <p> <a href="trangcanhan.html">Vũ Văn Duy</a></p>
-    <p> <a href="trangcanhan.html">Trần Đăng Dương</a></p>
-    <p> <a href="trangcanhan.html">Phạm Thế Đan</a></p>
-    <p> <a href="https://pennywise002.github.io/Pennywise002.gibhub.io/TienDat.html">Nguyễn Tiến Đạt</a></p>
-    <p><a href="trangcanhan.html">Phạm Tuấn Đạt</a></p>
-    <p> <a href="trangcanhan.html">Dương Minh Đăng</a></p>
-    <p> <a href="trangcanhan.html">Lê Ngọc Hải Đăng</a></p>
-    <p> <a href="https://dang6969.w3spaces.com/saved-from-Tryit-2026-04-22-umggw.html">Nguyễn Hải Đăng</a></p>
-    <p> <a href="trangcanhan.html">Bùi Tiến Đoàn</a></p>
-    <p> <a href="trangcanhan.html">Lê Minh Đức</a></p>
-    <p> <a href="trangcanhan.html">Đỗ Trần Hương Giang</a></p>
-    <p> <a href="trangcanhan.html">Dương Thị Hậu</a></p>
-    <p><a href="trangcanhan.html">Lê Quang Huy</a></p>
-    <p><a href="trangcanhan.html">Trần Gia Huy</a></p>
-    <p><a href="https://firm-black-ad5y1fsfk1.edgeone.app/">Nguyễn Văn Khải</a></p>
-    <p> <a href="https://khangtuan3010-blip.github.io/my-profit/">Trần Tuấn Khang</a></p>
-    <p> <a href="trangcanhan.html">Nguyễn Trung Kiên</a></p>
-    <p><a href="https://trangcanhanhtmll.w3spaces.com/">Nguyễn Hải Lâm</a></p>
-    <p> <a href="https://lehailinh08.github.io/my-profile/">Lê Hải Linh</a></p>
-
-    <p> <a href="mailinh.html">Trương Thị Mai Linh</a></p>
-    <p> <a href="ly.html">Dương Thị Nhật Ly</a></p>
-    <p><a href="https://dungmotlan36-jpg.github.io/myprofile/">Nguyễn Huy Mạnh</a></p>
-    <p> <a href="trangcanhan.html">Lê Phúc Minh</a></p>
-    <p> <a href="nga.html">Ngô Thị Phương Nga</a></p>
-    <p> <a href="trangcanhan.html">Dương Vũ Phong<D/a></p>
-    <p> <a href="trangcanhan.html">Nguyễn Văn Phước</a></p>
-    <p> <a href="https://trangcanhanhtml.w3spaces.com/saved-from-Tryit-2026-04-24-vnaaa.html">Nguyễn Vinh Quân</a></p>
-    <p> <a href="trangcanhan.html">Trần Vũ Đức Thắng</a></p>
-    <p> <a href="trangcanhan.html">Nguyễn Phạm Đức Thiện</a></p>
-    <p> <a href="trangcanhan.html">Dương Diệu Thúy</a></p>
-    <p> <a href="trangcanhan.html">Nguyễn Thị Anh Thư</a></p>
-    <p><a href="minhthu.html">Trần Thị Minh Thư</a></p>
-    <p> <a href="Thương.html">Lương Thương Thương</a></p>
-    <p> <a href="trangcanhan.html">Hồ Quốc Trọng</a></p>
-    <p> <a href="trangcanhan.html">Hoàng Văn</a></p>
-    <p> <a href="trangcanhan.html">Bùi Thế Vinh</a></p>
-    <p> <a href="TuongVy.html">Dương Ngọc Tường Vy</a></p>
-
-    <h3>Khẩu hiệu</h3>
-<p>"Cố gắng hôm nay – Thành công ngày mai"</p>
-
+    <div class="contact">
+        <a href="https://www.facebook.com/memory.with12a" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        <a href="https://www.instagram.com/memory_with12a/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        <a href="https://www.tiktok.com/@fanmeeting.with12a?_t=ZS-90cqi0ynSkx&_r=1&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnR_bjHlNggK01-kTC66rbtHm7pVZ-uKsnUT619QQU9hbpOf-6VHrROoTh-ss_aem_xL7ThFJUMYyLUX3k4WZw3Q" target="_blank"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+    </div>
 </div>
+
+<div class="hero">
+    <div class="carousel" id="carousel">
+        <button class="btn prev" onclick="prev()">❮</button>
+        <div class="cards-container" id="cards-container"></div>
+        <button class="btn next" onclick="next()">❯</button>
+    </div>
+</div>
+
+<div class="memory-intro-container">
+    <div class="memory-intro-content">
+        <div class="video-box">
+            <video autoplay muted loop playsinline controls>
+                <source src="ky-yeu-12a.mp4" type="video/mp4">
+                Trình duyệt của bạn không hỗ trợ xem video trực tiếp.
+            </video>
+        </div>
+        <div class="text-box">
+            <div class="title-wrapper">
+                <h2><span class="memory-title">Chào mừng đến với lớp 12A</span></h2>
+                <div class="underline"></div>
+            </div>
+            <p class="intro-text">
+                <span class="drop-cap">L</span>ớp 12A - K65 THPT Hưng Yên không chỉ là một tập thể học tập, mà còn là một gia đình. Nơi đây lưu giữ những nụ cười, giọt nước mắt và cả những kỷ niệm rực rỡ nhất của tuổi thanh xuân.
+            </p>
+            <p class="intro-text">Chúng mình cùng nhau đi qua những kỳ thi căng thẳng, nhưng cũng không thiếu những buổi đi chơi "quên lối về". Hãy cùng nhìn lại hành trình của chúng mình nhé!</p>
+            <div class="signature">Thân gửi, 12A ❤️</div>
+        </div>
+    </div>
+</div>
+
+<section class="teacher-section">
+    <div class="teacher-container">
+        <div class="teacher-image">
+            <img src="co-linh.jpg" alt="Cô Vũ Thị Thùy Linh">
+        </div>
+        <div class="teacher-info">
+            <span class="teacher-role">Người lái đò thầm lặng</span>
+            <h2 class="teacher-name">Cô Vũ Thị Thùy Linh</h2>
+            <div class="teacher-message">
+                <p>Gửi tới Cô - người mẹ thứ hai của tập thể 12A. Cảm ơn Cô đã luôn kiên nhẫn, yêu thương và dìu dắt chúng em qua những năm tháng cấp 3 đầy thử thách. Những lời dạy bảo của Cô sẽ là hành trang quý giá để chúng em vững bước vào đời.</p>
+                <br>
+                <p><strong>Lớp 12A mãi yêu Cô!</strong></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="event-section event-2011">
+    <h3 class="event-name"><i class="fa-solid fa-pen-nib"></i> Kỷ niệm Ngày Nhà giáo Việt Nam 20/11</h3>
+    <div class="event-slider-wrapper">
+        <button class="event-slider-btn prev" onclick="slideEvent(this, -1)">❮</button>
+        <div class="event-slider-container">
+            <div class="event-slider-track" data-index="0">
+                <div class="memory-item">
+                    <video autoplay muted loop playsinline>
+                        <source src="20-11.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ xem video trực tiếp.
+                    </video>
+                </div>
+                <div class="memory-item"><img src="20-11-1.jpg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-2.jpeg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-3.jpg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-4.jpg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-5.jpg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-6.jpg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-7.jpg" alt="20/11"></div>
+                <div class="memory-item"><img src="20-11-8.jpg" alt="20/11"></div>
+            </div>
+        </div>
+        <button class="event-slider-btn next" onclick="slideEvent(this, 1)">❯</button>
+    </div>
+</section>
+
+<section class="event-section event-gender">
+    <h3 class="event-name"><i class="fa-solid fa-venus-mars"></i> Kỷ niệm 8/3 & 19/11</h3>
+    <div class="event-slider-wrapper">
+        <button class="event-slider-btn prev" onclick="slideEvent(this, -1)">❮</button>
+        <div class="event-slider-container">
+            <div class="event-slider-track" data-index="0">
+                <div class="memory-item"><img src="83_1.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_2.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_3.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_4.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_5.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_6.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_7.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_8.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_9.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_10.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_11.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_12.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_13.jpg" alt="8/3"></div>
+                <div class="memory-item"><img src="83_14.jpg" alt="8/3"></div>
+            </div>
+        </div>
+        <button class="event-slider-btn next" onclick="slideEvent(this, 1)">❯</button>
+    </div>
+</section>
+
+<section class="event-section event-263">
+    <h3 class="event-name"><i class="fa-solid fa-flag"></i> Kỷ niệm Ngày thành lập Đoàn TNCS HCM 26/3</h3>
+    <div class="event-slider-wrapper">
+        <button class="event-slider-btn prev" onclick="slideEvent(this, -1)">❮</button>
+        <div class="event-slider-container">
+            <div class="event-slider-track" data-index="0">
+                <div class="memory-item"><img src="263_1.jpg" alt="26/3"></div>
+                <div class="memory-item"><img src="263_2.jpg" alt="26/3"></div>
+                <div class="memory-item"><img src="263_3.jpg" alt="26/3"></div>
+                <div class="memory-item"><img src="263_4.jpg" alt="26/3"></div>
+                <div class="memory-item"><img src="263_5.jpg" alt="26/3"></div>
+                <div class="memory-item"><img src="263_6.jpg" alt="26/3"></div>
+                <div class="memory-item"><img src="263_7.jpg" alt="26/3"></div>
+            </div>
+        </div>
+        <button class="event-slider-btn next" onclick="slideEvent(this, 1)">❯</button>
+    </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="meme-section">
+    <h2 class="meme-main-title">Top Những Meme Tiêu Biểu Của 12A</h2>
+    <div class="meme-container">
+        
+        <div class="meme-left">
+            <div class="meme-stack" id="meme-stack">
+                </div>
+            
+            <div class="meme-controls">
+                <button class="meme-btn" onclick="prevMeme()"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="meme-btn" onclick="nextMeme()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="meme-right" id="meme-info">
+            </div>
+
+    </div>
+</section>
+
+<div id="media-modal" class="media-modal">
+    <span class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+    <div class="zoom-pill">
+        <button id="zoom-in"><i class="fa-solid fa-plus"></i></button>
+        <div class="pill-divider"></div>
+        <button id="zoom-out"><i class="fa-solid fa-minus"></i></button>
+    </div>
+    <div id="modal-content-wrapper" class="modal-content-wrapper"></div>
+</div>
+
+<script>
+const students = [
+    { name: "Bùi Bảo Anh", img: "1.jpg", link: "profile.html?id=1" }, 
+    { name: "Đoàn Việt Anh", img: "2.jpg", link: "profile.html?id=2" },
+    { name: "Nguyễn Quỳnh Anh", img: "3.jpg", link: "profile.html?id=3" }, 
+    { name: "Phạm Tùng Anh", img: "4.jpg", link: "profile.html?id=4" },
+    { name: "Trần Quốc Anh", img: "5.jpg", link: "profile.html?id=5" }, 
+    { name: "Phạm Ngọc Ánh", img: "6.jpg", link: "profile.html?id=6" },
+    { name: "Dương Gia Bảo", img: "7.jpg", link: "profile.html?id=7" }, 
+    { name: "Vũ Quốc Bảo", img: "8.jpg", link: "profile.html?id=8" },
+    { name: "Nguyễn Hữu Bình", img: "9.jpg", link: "profile.html?id=9" }, 
+    { name: "Trần Hà Chi", img: "10.jpg", link: "profile.html?id=10" },
+    { name: "Vũ Văn Duy", img: "11.jpg", link: "profile.html?id=11" }, 
+    { name: "Trần Đăng Dương", img: "12.jpg", link: "profile.html?id=12" },
+    { name: "Phạm Thế Đan", img: "13.jpg", link: "profile.html?id=13" },
+    { name: "Nguyễn Tiến Đạt", img: "14.jpg", link: "profile.html?id=14" },
+    { name: "Phạm Tuấn Đạt", img: "15.jpg", link: "profile.html?id=15" },
+    { name: "Dương Minh Đăng", img: "16.jpg", link: "profile.html?id=16" },
+    { name: "Lê Ngọc Hải Đăng", img: "17.jpg", link: "profile.html?id=17" },
+    { name: "Nguyễn Hải Đăng", img: "18.jpg", link: "profile.html?id=18" },
+    { name: "Bùi Tiến Đoàn", img: "19.jpg", link: "profile.html?id=19" },
+    { name: "Lê Minh Đức", img: "20.jpg", link: "profile.html?id=20" },
+    { name: "Đỗ Trần Hương Giang", img: "21.jpg", link: "profile.html?id=21" },
+    { name: "Dương Thị Hậu", img: "22.jpg", link: "profile.html?id=22" },
+    { name: "Lê Quang Huy", img: "23.jpg", link: "profile.html?id=23" },
+    { name: "Trần Gia Huy", img: "24.jpg", link: "profile.html?id=24" },
+    { name: "Nguyễn Văn Khải", img: "25.jpg", link: "profile.html?id=25" },
+    { name: "Trần Tuấn Khang", img: "26.jpg", link: "profile.html?id=26" },
+    { name: "Nguyễn Trung Kiên", img: "27.jpg", link: "profile.html?id=27" },
+    { name: "Nguyễn Hải Lâm", img: "28.jpg", link: "profile.html?id=28" },
+    { name: "Lê Hải Linh", img: "29.jpg", link: "profile.html?id=29" },
+    { name: "Trương Thị Mai Linh", img: "30.jpg", link: "profile.html?id=30" },
+    { name: "Dương Thị Nhật Ly", img: "31.jpg", link: "profile.html?id=31" },
+    { name: "Nguyễn Huy Mạnh", img: "32.jpg", link: "https://dungmotlan36-jpg.github.io/myprofile/" },
+    { name: "Lê Phúc Minh", img: "33.jpg", link: "profile.html?id=33" },
+    { name: "Ngô Thị Phương Nga", img: "34.jpg", link: "profile.html?id=34" },
+    { name: "Dương Vũ Phong", img: "35.jpg", link: "profile.html?id=35" },
+    { name: "Nguyễn Văn Phước", img: "36.jpg", link: "profile.html?id=36" },
+    { name: "Nguyễn Vinh Quân", img: "37.jpg", link: "https://trangcanhanhtml.w3spaces.com/saved-from-Tryit-2026-04-24-vnaaa.html" },
+    { name: "Trần Vũ Đức Thắng", img: "38.jpg", link: "profile.html?id=38" },
+    { name: "Nguyễn Phạm Đức Thiện", img: "39.jpg", link: "profile.html?id=39" },
+    { name: "Dương Diệu Thúy", img: "40.jpg", link: "profile.html?id=40" },
+    { name: "Nguyễn Thị Anh Thư", img: "41.jpg", link: "profile.html?id=41" },
+    { name: "Trần Thị Minh Thư", img: "42.jpg", link: "profile.html?id=42" },
+    { name: "Lương Thương Thương", img: "43.jpg", link: "profile.html?id=43" },
+    { name: "Hồ Quốc Trọng", img: "44.png", link: "https://dungmotlan36-jpg.github.io/QuocTrong/" },
+    { name: "Hoàng Văn", img: "45.jpg", link: "profile.html?id=45" },
+    { name: "Bùi Thế Vinh", img: "46.jpg", link: "profile.html?id=46" },
+    { name: "Dương Ngọc Tường Vy", img: "47.jpg", link: "https://lop12a.github.io/LOP12A/TuongVy.html" }
+];
+
+let index = 0;
+let isSpinning = false;
+const cardsContainer = document.getElementById("cards-container");
+
+function init() {
+    students.forEach((student) => {
+        const card = document.createElement("div");
+        card.className = "card hidden";
+        card.innerHTML = `
+            <a href="${student.link}" class="card-link" target="_self">
+                <img src="${student.img}">
+                <p>${student.name}</p>
+            </a>
+        `;
+        cardsContainer.appendChild(card);
+    });
+    updateView();
+}
+
+function updateView() {
+    const cards = cardsContainer.querySelectorAll(".card");
+    const total = students.length;
+    cards.forEach((card, i) => {
+        card.className = "card";
+        let diff = i - index;
+
+        if (diff < -total / 2) diff += total;
+        if (diff > total / 2) diff -= total;
+
+        if (diff === 0) card.classList.add("center");
+        else if (diff === -1) card.classList.add("left1");
+        else if (diff === 1) card.classList.add("right1");
+        else if (diff === -2) card.classList.add("left2");
+        else if (diff === 2) card.classList.add("right2");
+        else card.classList.add("hidden");
+    });
+}
+
+function next() {
+    if(isSpinning) return;
+    index = (index + 1) % students.length;
+    updateView();
+    resetAutoPlay();
+}
+
+function prev() {
+    if(isSpinning) return;
+    index = (index - 1 + students.length) % students.length;
+    updateView();
+    resetAutoPlay();
+}
+
+function spinTo(targetIndex) {
+    if (index === targetIndex || isSpinning) return;
+    isSpinning = true;
+
+    const total = students.length;
+    let diff = targetIndex - index;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+
+    const dir = diff > 0 ? 1 : -1;
+    const steps = Math.abs(diff);
+    let currentStep = 0;
+
+    const spinTimer = setInterval(() => {
+        index = (index + dir + total) % total;
+        updateView();
+        currentStep++;
+
+        if (currentStep >= steps) {
+            clearInterval(spinTimer);
+            isSpinning = false;
+            resetAutoPlay();
+        }
+    }, 70);
+}
+
+let isScrolling = false;
+document.getElementById("carousel").addEventListener("wheel", (e) => {
+    e.preventDefault();
+    if (isScrolling || isSpinning) return;
+    isScrolling = true;
+    if(e.deltaY > 0) next(); else prev();
+    setTimeout(() => { isScrolling = false; }, 400);
+}, { passive: false });
+
+let autoPlay = setInterval(next, 60000);
+function resetAutoPlay() {
+    clearInterval(autoPlay);
+    autoPlay = setInterval(next, 60000);
+}
+
+const input = document.getElementById("searchInput");
+const dropdown = document.getElementById("dropdown");
+
+function showList(list) {
+    dropdown.innerHTML = "";
+    if(list.length === 0) { dropdown.classList.remove("show"); return; }
+    
+    list.forEach((s) => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.textContent = s.name;
+        div.onclick = () => {
+            const target = students.findIndex(st => st.name === s.name);
+            spinTo(target);
+            input.value = s.name;
+            dropdown.classList.remove("show");
+        };
+        dropdown.appendChild(div);
+    });
+    dropdown.classList.add("show");
+}
+
+input.addEventListener("focus", () => showList(students));
+input.addEventListener("input", () => {
+    const val = input.value.toLowerCase();
+    showList(students.filter(s => s.name.toLowerCase().includes(val)));
+});
+
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".combo")) dropdown.classList.remove("show");
+});
+
+init();
+
+function slideEvent(btnElement, direction) {
+    const wrapper = btnElement.closest('.event-slider-wrapper');
+    const track = wrapper.querySelector('.event-slider-track');
+    const items = track.querySelectorAll('.memory-item');
+    const container = wrapper.querySelector('.event-slider-container');
+    
+    if (items.length === 0) return;
+
+    let currentIndex = parseInt(track.getAttribute('data-index') || '0');
+
+    const itemWidth = items[0].getBoundingClientRect().width;
+    const gap = 20; 
+    const moveWidth = itemWidth + gap;
+
+    const containerWidth = container.getBoundingClientRect().width;
+    const visibleItems = Math.floor(containerWidth / moveWidth) || 1;
+
+    const maxIndex = Math.max(0, items.length - visibleItems);
+
+    currentIndex += direction;
+
+    if (currentIndex > maxIndex) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = maxIndex;
+
+    track.setAttribute('data-index', currentIndex);
+    track.style.transform = `translateX(-${currentIndex * moveWidth}px)`;
+}
+
+/* ================= JS KHU VỰC KHÔNG GIAN RIÊNG (MEME) ================= */
+const memeData = [
+    { 
+        type: 'img', 
+        src: 'meme1.jpg',
+        title: 'Thủ khoa HSA 149 Điểm', 
+        desc: 'Xin nghỉ học 3 ngày để ôn thi HSA, 2 giờ sáng dậy ôn bài (ôn cách đi rừng, đảo lane, farm vàng xanh nhất map,...), bức ảnh là minh chứng rõ nhất cho đẳng cấp của anh ấy khi mà chưa thi đã được nhà đài phỏng vấn vì biết là thủ khoa rồi!'
+    },
+    { 
+        type: 'img', 
+        src: 'meme2.jpg', 
+        title: '8 Anh Tài', 
+        desc: 'Ăn vặt giờ ra chơi ngoài cổng trường là vi phạm nội quy nhà trường, nhưng đói quá thì bố ai chịu được. 8 anh tài vừa hốc xong thì lên nhóm zalo lớp mặt vẫn tươi rói, nhất là bố ở cuối cười như được mùa.' 
+    },
+    { 
+        type: 'img', 
+        src: 'meme3.jpg', 
+        title: 'VVC CHAMPIONS SHIP', 
+        desc: 'Cứ như bước ra từ trên TV, giải đấu VVC Champions Ship được tổ chức để phân định người khỏe nhất lớp 12A. Các thí sinh là những người được tuyển chọn vô cùng kỹ lưỡng (có người mời không thèm vào), đây là một giải đấu toàn các hảo thủ cốt vương và đặc biệt nó mang tên của một vị bán hàng ăn dấu âm nào đó không tiện nhắc tên.' 
+    },
+    { 
+        type: 'img', 
+        src: 'meme4.jpg', 
+        title: 'Thành Công Là Gì?', 
+        desc: 'Trong bối cảnh gấp rút chuẩn bị cho kỳ thi tốt nghiệp, đặc biệt hơn là trong giờ Văn. Môn Văn Học được biết đến là học rất buồn ngủ thế nhưng chớ trêu thay trong tiết văn nọ cô đã cho 1 chủ đề vô cùng phấn khởi, và đó chính là "Tranh luận", và nhân vật chính ngày hôm đó không ai khác đó chính là...' 
+    }
+];
+
+let currentMemeIndex = 0;
+const memeStack = document.getElementById('meme-stack');
+const memeInfo = document.getElementById('meme-info');
+
+function renderMemes() {
+    memeStack.innerHTML = '';
+    
+    memeData.forEach((meme, i) => {
+        let diff = (i - currentMemeIndex + memeData.length) % memeData.length;
+        let className = 'meme-card hidden';
+        
+        if (diff === 0) className = 'meme-card active';
+        else if (diff === 1) className = 'meme-card next-1';
+        else if (diff === 2 || diff === memeData.length - 1) className = 'meme-card next-2'; 
+        
+        const card = document.createElement('div');
+        card.className = className;
+        
+        let mediaHtml = meme.type === 'video'
+            ? `<video src="${meme.src}" muted loop playsinline></video>`
+            : `<img src="${meme.src}" alt="${meme.title}">`;
+            
+        card.innerHTML = mediaHtml;
+        
+        card.onclick = () => {
+            if (card.classList.contains('active')) {
+                openModal(card.firstElementChild);
+            } else {
+                currentMemeIndex = i;
+                renderMemes();
+            }
+        };
+        
+        memeStack.appendChild(card);
+    });
+
+    const activeMeme = memeData[currentMemeIndex];
+    memeInfo.innerHTML = `
+        <h3 class="meme-info-title">${activeMeme.title}</h3>
+        <p class="meme-info-desc">${activeMeme.desc}</p>
+    `;
+}
+
+function nextMeme() {
+    currentMemeIndex = (currentMemeIndex + 1) % memeData.length;
+    renderMemes();
+}
+
+function prevMeme() {
+    currentMemeIndex = (currentMemeIndex - 1 + memeData.length) % memeData.length;
+    renderMemes();
+}
+
+renderMemes();
+
+const modal = document.getElementById('media-modal');
+const modalWrapper = document.getElementById('modal-content-wrapper');
+const closeBtn = document.querySelector('.close-modal');
+const btnZoomIn = document.getElementById('zoom-in');
+const btnZoomOut = document.getElementById('zoom-out');
+
+let scale = 1;
+let activeMedia = null;
+
+document.querySelectorAll('.memory-item img, .memory-item video').forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(item);
+    });
+});
+
+function openModal(item) {
+    modalWrapper.innerHTML = '';
+    scale = 1;
+    
+    if (item.tagName === 'IMG') {
+        activeMedia = document.createElement('img');
+        activeMedia.src = item.src;
+    } else {
+        activeMedia = document.createElement('video');
+        const videoSrc = item.querySelector('source') ? item.querySelector('source').src : item.src;
+        activeMedia.src = videoSrc;
+        activeMedia.controls = true;
+        activeMedia.autoplay = true;
+    }
+    
+    activeMedia.className = 'modal-content';
+    modalWrapper.appendChild(activeMedia);
+    modal.classList.add('active');
+    document.body.classList.add('no-scroll');
+    updateTransform();
+    activeMedia.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (scale === 1) {
+            scale = 2;
+        } else {
+            scale = 1;
+        }
+        updateTransform();
+    });
+}
+
+function updateTransform() {
+    if (!activeMedia) return;
+    
+    activeMedia.style.transform = `scale(${scale})`;
+    
+    activeMedia.style.cursor = scale === 1 ? 'zoom-in' : 'zoom-out';
+}
+
+btnZoomIn.onclick = (e) => { 
+    e.stopPropagation(); 
+    scale = Math.min(4, scale + 0.4); 
+    updateTransform(); 
+};
+btnZoomOut.onclick = (e) => { 
+    e.stopPropagation(); 
+    scale = Math.max(1, scale - 0.4); 
+    updateTransform(); 
+};
+
+modalWrapper.onwheel = (e) => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? -0.2 : 0.2;
+    scale = Math.max(1, Math.min(5, scale + delta));
+    updateTransform();
+};
+
+modal.onclick = (e) => {
+    if (e.target === modal || e.target === modalWrapper) {
+        closeGallery();
+    }
+};
+closeBtn.onclick = closeGallery;
+
+function closeGallery() {
+    modal.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+    if(activeMedia && activeMedia.tagName === 'VIDEO') activeMedia.pause();
+    setTimeout(() => { 
+        modalWrapper.innerHTML = ''; 
+        activeMedia = null; 
+    }, 300);
+}
+</script>
 
 </body>
 </html>
