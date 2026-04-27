@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Nguyễn Trung Kiên</title>
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --cyber-yellow: #ffee00;
+            --dark-bg: #0d0d0d;
+            --batman-blue: #1a1a2e;
+        }
+
+        body {
+            /* Thay link ảnh Batman tại đây */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url("kienbg.webp") no-repeat center center fixed; 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Nút quay lại trang chủ lớp */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            text-decoration: none;
+            font-family: monospace;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 85% 100%, 0 100%);
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            background: var(--neon-green);
+            color: black;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        /* Khung chứa chính */
+        .portfolio-card {
+            display: flex;
+            background: rgba(10, 10, 10, 0.85);
+            border: 2px solid var(--neon-green);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
+            max-width: 850px;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .portfolio-card::before {
+            content: "SYSTEM_ONLINE_V.2008";
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #000;
+            padding: 0 10px;
+            color: var(--neon-green);
+            font-size: 12px;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        /* Avatar Section */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 40px;
+        }
+
+        .avatar-frame {
+            width: 220px;
+            height: 220px;
+            border: 3px solid var(--neon-green);
+            position: relative;
+            padding: 5px;
+            overflow: hidden;
+            transition: 0.5s ease;
+            clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+            cursor: pointer;
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+            filter: grayscale(30%);
+        }
+
+        /* HIỆU ỨNG HOVER AVATAR */
+        .avatar-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--neon-green);
+            border-color: var(--cyber-yellow);
+        }
+
+        .avatar-frame:hover img {
+            filter: grayscale(0%) contrast(1.2);
+            transform: scale(1.1);
+        }
+
+        /* Hiệu ứng quét line khi hover */
+        .avatar-frame::after {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(57, 255, 20, 0.4), transparent);
+            transition: 0s;
+        }
+
+        .avatar-frame:hover::after {
+            top: 100%;
+            transition: 1s linear;
+        }
+
+        /* Right Section Content */
+        .right-section {
+            flex: 2;
+        }
+
+        h1 {
+            color: var(--neon-green);
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            text-shadow: 3px 3px 0px rgba(0,0,0,1);
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .info-item {
+            margin: 12px 0;
+            font-size: 1.1em;
+            border-bottom: 1px dashed rgba(57, 255, 20, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .info-label {
+            color: var(--neon-green);
+            font-weight: bold;
+            margin-right: 15px;
+            font-family: monospace;
+        }
+
+        .hobby {
+            background: var(--cyber-yellow);
+            color: black;
+            padding: 3px 10px;
+            font-weight: 800;
+            border-radius: 2px;
+            box-shadow: 3px 3px 0 black;
+        }
+
+        .message-box {
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            font-style: italic;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .message-box::before {
+            content: "“";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 40px;
+            color: var(--neon-green);
+        }
+
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">⬅ Back Home</a>
+
+    <div class="portfolio-card">
+        <div class="left-section">
+            <div class="avatar-frame">
+                <img src="kien.webp" alt="Nguyễn Trung Kiên">
+            </div>
+            <p style="color: var(--neon-green); font-family: monospace; margin-top: 15px; letter-spacing: 2px;">
+                LEVEL 18 AGE UNLOCKED
+            </p>
+        </div>
+
+        <div class="right-section">
+            <h1>NGUYỄN TRUNG KIÊN</h1>
+            
+            <div class="info-item">
+                <span class="info-label">DATE_OF_BIRTH:</span> 23 / 07 / 2008
+            </div>
+            <div class="info-item">
+                <span class="info-label">SECTOR:</span> Nghệ An, VN
+            </div>
+            <div class="info-item">
+                <span class="info-label">PRIORITY:</span> <span class="hobby">💰 THÍCH TIỀN</span>
+            </div>
+
+            <div class="message-box">
+                Cảm ơn thầy cô đã tận tụy, cảm ơn bạn bè đã cùng đồng hành. Thanh xuân này trọn vẹn nhờ có mọi người. Chúc tất cả chúng ta chân cứng đá mềm, hẹn ngày gặp lại!
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
