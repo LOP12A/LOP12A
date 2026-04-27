@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Dương Gia Bảo</title>
+    <style>
+        /* Import font chữ */
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600&display=swap');
+
+        :root {
+            --tay-indigo: #162436; 
+            --forest-green: #2d5a3f; 
+            --earth-bg: #f4ecdf; 
+            --wood-brown: #6b4423; 
+            --brocade-red: #8b251c; 
+        }
+
+        body {
+            background-color: var(--earth-bg);
+            background-image: linear-gradient(rgba(45, 90, 63, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(45, 90, 63, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Lora', serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* --- NÚT QUAY VỀ TRANG CHỦ --- */
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: var(--wood-brown);
+            color: #fff;
+            border-radius: 30px 5px 30px 5px; /* Dạng thẻ gỗ cách điệu */
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            border: 2px solid var(--earth-bg);
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: var(--forest-green);
+            transform: scale(1.05);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+            border-radius: 5px 30px 5px 30px;
+        }
+
+        .home-btn svg {
+            fill: white;
+            width: 18px;
+            height: 18px;
+        }
+        /* ----------------------------- */
+
+        .portfolio-card {
+            background: #fffdf9;
+            border: 2px solid var(--forest-green);
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15), inset 0 0 0 5px var(--earth-bg), inset 0 0 0 6px var(--tay-indigo);
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 50px 40px;
+            position: relative;
+        }
+
+        .portfolio-card::before {
+            content: '❖ 🌿';
+            position: absolute;
+            top: 15px; left: 20px;
+            font-size: 1.5rem; color: var(--forest-green);
+        }
+        .portfolio-card::after {
+            content: '🌿 ❖';
+            position: absolute;
+            bottom: 15px; right: 20px;
+            font-size: 1.5rem; color: var(--forest-green);
+        }
+
+        .avatar-section {
+            flex: 1 1 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .avatar-frame {
+            position: relative;
+            padding: 12px;
+            background: var(--earth-bg);
+            border: 3px solid var(--wood-brown);
+            outline: 2px dashed var(--forest-green);
+            outline-offset: -8px;
+            border-radius: 8px;
+            box-shadow: 5px 8px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .avatar-frame:hover {
+            transform: translateY(-10px) rotate(-3deg);
+            box-shadow: 12px 15px 25px rgba(45, 90, 63, 0.25);
+        }
+
+        .avatar-frame::before {
+            content: '✣';
+            position: absolute;
+            top: -16px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem; color: var(--brocade-red);
+            background: #fffdf9;
+            padding: 0 10px;
+            border: 2px solid var(--wood-brown);
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+
+        .avatar-frame:hover::before {
+            color: var(--forest-green);
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        .avatar-img {
+            width: 100%;
+            max-width: 250px;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+            filter: sepia(0.3) contrast(1.1);
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .avatar-frame:hover .avatar-img {
+            transform: scale(1.08);
+            filter: sepia(0) contrast(1.1);
+        }
+
+        .info-section {
+            flex: 2 1 400px;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-section h1 {
+            color: var(--forest-green);
+            margin: 0 0 5px 0;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px dashed var(--wood-brown);
+            padding-bottom: 10px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .info-list li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .info-list li:hover { transform: translateX(5px); }
+
+        .info-list li span.icon { margin-right: 10px; color: var(--brocade-red); }
+
+        .info-list strong { color: var(--tay-indigo); min-width: 100px; display: inline-block; }
+
+        .message-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(45, 90, 63, 0.08);
+            border-left: 5px solid var(--brocade-red);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .message-box p {
+            margin: 0;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--tay-indigo);
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-card { padding: 40px 20px; }
+            .info-section { padding-left: 0; margin-top: 20px; }
+            .info-section h1 { font-size: 1.8rem; text-align: center; }
+            .home-btn { top: 10px; left: 10px; padding: 8px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="home-btn">
+        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+        Quay về trang chủ
+    </a>
+
+    <div class="portfolio-card">
+        
+        <div class="avatar-section">
+            <div class="avatar-frame">
+                <img src="baotay.webp" alt="avatar" class="avatar-img">
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h1>Dương Gia Bảo (Tày)</h1>
+            
+            <ul class="info-list">
+                <li><span class="icon">⛰️</span> <div><strong>Lớp:</strong> 12A - THPT Hưng Yên</div></li>
+                <li><span class="icon">🌱</span> <div><strong>Ngày sinh:</strong> 20/08/2008</div></li>
+                <li><span class="icon">🌾</span> <div><strong>Quê quán:</strong> Ba Bể, Bắc Kạn</div></li>
+                <li><span class="icon">🏕️</span> <div><strong>Vài nét:</strong> Có sở thích đi ngắm cảnh và khám phá những nơi thú vị cùng bạn bè, đam mê landscape sketch và là một thành viên của NPDT volleyball club.</div></li>
+            </ul>
+
+            <div class="message-box">
+                <p>"Cảm ơn vì không lãng phí thanh xuân năm cấp 3 thú vị cùng 12A..."</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
