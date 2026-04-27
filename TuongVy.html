@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<head>
 <meta charset="UTF-8">
 <title>Dương Ngọc Tường Vy</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body{
     font-family: Arial;
     background-color: #fff5fa;
+    margin: 0;
 }
+
+/* KHUNG CHÍNH */
 .container{
-    width: 800px;
+    max-width: 900px;
     margin: 40px auto;
     background: white;
     padding: 25px;
     border-radius: 15px;
     display: flex;
+    gap: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
+
+/* BÊN TRÁI */
 .left{
     width: 35%;
     text-align: center;
 }
+
+/* ẢNH */
 img{
     width: 180px;
     border-radius: 50%;
     border: 5px solid pink;
 }
+
+/* ICON + LINK */
+.left p{
+    margin: 10px 0;
+}
+
+/* NÚT */
 .btn{
     display: inline-block;
     padding: 12px 25px;
@@ -41,16 +59,23 @@ img{
 .btn:hover{
     transform: scale(1.05);
 }
+
+/* BÊN PHẢI */
 .right{
     width: 65%;
 }
+
+/* TEXT */
 h1{
     color: #ff4d94;
-    white-space: nowrap;
+    margin-top: 0;
 }
+
 h3{
     color: #ff99c8;
+    margin-bottom: 5px;
 }
+
 p{
     color: #555;
     line-height: 1.6;
@@ -58,7 +83,23 @@ p{
 
 a{
     text-decoration: none;
-    color: blue;
+    color: #ff4d94;
+}
+
+/* ===== BONUS: RESPONSIVE ===== */
+@media (max-width: 768px){
+    .container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .left, .right{
+        width: 100%;
+    }
+
+    img{
+        width: 140px;
+    }
 }
 </style>
 
@@ -68,57 +109,67 @@ a{
 
 <div class="container">
 
-<div class="left">
-<img src="anh.jpg">
-    
+    <!-- LEFT -->
+    <div class="left">
+        <img src="anh.jpg" alt="Ảnh cá nhân">
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-<div style="margin-top:20px;">
- 
+        <div style="margin-top:20px;">
+            <p>
+                <i class="fa-brands fa-instagram"></i>
+                <a href="https://www.instagram.com/dwng_tvy" target="_blank">Instagram</a>
+            </p>
 
- 
+            <p>
+                <i class="fa-brands fa-tiktok"></i>
+                <a href="https://www.tiktok.com/@dwng_tzy" target="_blank">TikTok</a>
+            </p>
+        </div>
+    </div>
 
-  <p><i class="fa-brands fa-instagram"></i>
-    <a href="https://www.instagram.com/dwng_tvy" target="_blank">Instagram</a>
-  </p>
+    <!-- RIGHT -->
+    <div class="right">
+        <h1>Dương Ngọc Tường Vy</h1>
 
-  <p><i class="fa-brands fa-tiktok"></i>
-    <a href="https://www.tiktok.com/@dwng_tzy" target="_blank">TikTok</a>
-  </p>
-</div>
+        <p>🎂 Ngày sinh: 07/11/2008</p>
+        <p>📍 Quê quán: Hưng Yên</p>
 
-<div class="right">
+        <h3>Giới thiệu</h3>
+        <p>
+            Em hiện là học sinh lớp 12. Sau những năm học cấp 3, em đã học được rất nhiều điều,
+            không chỉ là kiến thức mà còn là những bài học về cuộc sống và cách trưởng thành hơn mỗi ngày.
+        </p>
 
-<h1>Dương Ngọc Tường Vy</h1>
+        <p>
+            Trường học đối với em không chỉ là nơi học tập mà còn là nơi lưu giữ những kỷ niệm đẹp
+            cùng thầy cô và bạn bè.
+        </p>
 
-<p>🎂 Ngày sinh: 07/11/2008</p>
-<p>📍 Quê quán: Hưng Yên</p>
+        <h3>Sở thích</h3>
+        <p>
+            Em thích nghe nhạc, xem phim và chụp ảnh. Những hoạt động này giúp em thư giãn
+            sau những giờ học căng thẳng.
+        </p>
 
-<h3>Giới thiệu</h3>
-<p>Em hiện là học sinh lớp 12. Sau những năm học cấp 3, em đã học được rất nhiều điều, không chỉ là kiến thức mà còn là những bài học về cuộc sống và cách trưởng thành hơn mỗi ngày.</p>
+        <p>
+            Ngoài ra, em cũng thích dành thời gian với bạn bè để tạo ra những kỷ niệm đáng nhớ
+            trong quãng đời học sinh.
+        </p>
 
-<p>Trường học đối với em không chỉ là nơi học tập mà còn là nơi lưu giữ những kỷ niệm đẹp cùng thầy cô và bạn bè.</p>
+        <h3>Ước mơ</h3>
+        <p>
+            Trong tương lai, em mong muốn theo đuổi ngành học mà mình yêu thích
+            và phát triển bản thân tốt hơn mỗi ngày.
+        </p>
 
-<h3>Sở thích</h3>
-<p>Em thích nghe nhạc, xem phim và chụp ảnh. Những hoạt động này giúp em thư giãn sau những giờ học căng thẳng.</p>
+        <h3>Lời nhắn</h3>
+        <p>
+            Ba năm cấp 3 là khoảng thời gian vô cùng ý nghĩa đối với em.
+            Em sẽ luôn trân trọng những kỷ niệm này và hy vọng rằng trong tương lai,
+            em sẽ đạt được những mục tiêu của mình.
+        </p>
 
-<p>Ngoài ra, em cũng thích dành thời gian với bạn bè để tạo ra những kỷ niệm đáng nhớ trong quãng đời học sinh.</p>
-
-<h3>Ước mơ</h3>
-<p>Trong tương lai, em mong muốn theo đuổi ngành học mà mình yêu thích và phát triển bản thân tốt hơn mỗi ngày.</p>
-
-<h3>Lời nhắn</h3>
-<p>Ba năm cấp 3 là khoảng thời gian vô cùng ý nghĩa đối với em. Em sẽ luôn trân trọng những kỷ niệm này và hy vọng rằng trong tương lai, em sẽ đạt được những mục tiêu của mình.</p>
-
-<br>
-<a href="index.html" class="btn">⬅ Quay lại trang chủ</a>
-
-
-</div>
+        <a href="index.html" class="btn">⬅ Quay lại trang chủ</a>
+    </div>
 
 </div>
 
