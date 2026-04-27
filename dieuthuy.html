@@ -146,11 +146,21 @@
             background-color: rgba(234, 199, 204, 0.2);
             width: 35px;
             height: 35px;
-            display: flex;
+            display: inline-flex !important;
             align-items: center;
             justify-content: center;
+            line-height: 1;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 0;
             border-radius: 50%;
-        }
+            font-size: 16px;
+            flex-shrink: 0;
+    }
+
+        h2 i::before {
+            display: block;
+    }
 
         h2::after {
             content: '';
@@ -232,7 +242,7 @@
             <img src="40.jpg" alt="Dương Diệu Thúy" class="avatar">
             <h1>Dương Diệu Thúy</h1>
             
-            <a href="https://facebook.com/yourlink" target="_blank" class="social-link" title="Ghé thăm Facebook của mình">
+            <a href="https://www.facebook.com/dddthuy" target="_blank" class="social-link" title="Ghé thăm Facebook của mình">
                 <i class="fa-brands fa-facebook"></i>
             </a>
 
