@@ -1,77 +1,65 @@
 <!DOCTYPE html>
-
 <html lang="vi">
-
 <head>
+<meta charset="UTF-8">
+<title>Trang cá nhân - Hoàng Văn</title>
 
-    <meta charset="UTF-8">
+<style>
+body{
+    font-family: Arial;
+    background-color: #f0f8ff;
+    text-align: center;
+}
 
-    <title>Trang cá nhân - Hoàng Văn</title>
+/* khung */
+.container{
+    width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
-    <style>
-
-        body {
-
-            font-family: Arial;
-
-            background-color: #f0f8ff;
-
-            text-align: center;
-
-        }
-
-        .container {
-
-            width: 60%;
-
-            margin: auto;
-
-            background: white;
-
-            padding: 20px;
-
-            border-radius: 10px;
-
-        }
-
-        img{
-    width: 250px;
+/* ảnh */
+img{
+    width: 220px;
     border-radius: 50%;
     border: 5px solid pink;
+    margin-top: 10px;
 }
-        h1 {
 
-            color: #2c3e50;
+/* tiêu đề */
+h1{
+    color: #2c3e50;
+}
 
-        }
+/* phần nội dung */
+.section{
+    margin-top: 20px;
+    text-align: left;
+}
 
-        .section {
+/* danh sách */
+ul{
+    padding-left: 20px;
+}
 
-            margin-top: 20px;
+/* nút */
+.btn{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
 
-            text-align: left;
-
-        }
-
-        a {
-
-            display: inline-block;
-
-            margin-top: 20px;
-
-            text-decoration: none;
-
-            color: white;
-
-            background: #3498db;
-
-            padding: 10px 15px;
-
-            border-radius: 5px;
-
-        }
-
-    </style>
+.btn:hover{
+    background: #2980b9;
+}
+</style>
 
 </head>
 
@@ -79,70 +67,44 @@
 
 <div class="container">
 
-    <h1>Trang cá nhân</h1>
+<h1>Trang cá nhân</h1>
 
-    <!-- Ảnh cá nhân -->
+<!-- Ảnh -->
+<img src="anh.jpg" alt="Ảnh cá nhân">
 
-    <img src="anh.jpg" alt="Ảnh cá nhân">
+<!-- Thông tin -->
+<div class="section">
+<h2>Thông tin cá nhân</h2>
+<p><b>Họ tên:</b> Hoàng Văn</p>
+<p><b>Ngày sinh:</b> 03/04/2008</p>
+<p><b>Quê quán:</b> Hưng Yên</p>
+<p><b>Giới thiệu:</b> Em là học sinh lớp 12A, là người vui vẻ và thích đi chill cùng bạn bè.</p>
+</div>
 
-    <!-- Thông tin -->
+<!-- Sở thích -->
+<div class="section">
+<h2>Sở thích</h2>
+<ul>
+<li>Học Toán</li>
+<li>Nghe nhạc</li>
+<li>Chơi game</li>
+<li>Đi cà phê</li>
+</ul>
+</div>
 
-    <div class="section">
+<!-- Lời nhắn -->
+<div class="section">
+<h2>Lời nhắn</h2>
+<p>
+Cảm ơn thầy cô và các bạn đã cùng em trải qua quãng thời gian học sinh đáng nhớ. 
+Chúc mọi người luôn thành công trên con đường phía trước!
+</p>
+</div>
 
-        <h2>Thông tin cá nhân</h2>
-
-        <p><b>Họ tên:</b> Hoàng Văn</p>
-
-        <p><b>Ngày sinh:</b> 03/04/2008</p>
-
-        <p><b>Quê quán:</b> Hưng Yên</p>
-
-        <p><b>Giới thiệu:</b> Là học sinh lớp 12A,thích đi chill .</p>
-
-    </div>
-
-    <!-- Sở thích -->
-
-    <div class="section">
-
-        <h2>Sở thích</h2>
-
-        <ul>
-
-            <li>Học Toán</li>
-
-            <li>Nghe nhạc</li>
-
-            <li>Chơi Game</li>
-
-            <li>Coffee</li>
-
-        </ul>
-
-    </div>
-
-    <!-- Lời nhắn -->
-
-    <div class="section">
-
-        <h2>Lời nhắn</h2>
-
-        <p>
-
-            Cảm ơn thầy cô và các bạn đã cùng mình trải qua quãng thời gian học sinh đáng nhớ.
-
-            Chúc tất cả mọi người thành công trong tương lai!
-
-        </p>
-
-    </div>
-
-    
-
-    <a href="index.html">⬅ Quay lại trang chủ</a>
+<!-- Nút quay lại -->
+<a href="index.html" class="btn">⬅ Quay lại trang chủ</a>
 
 </div>
 
 </body>
-
 </html>
